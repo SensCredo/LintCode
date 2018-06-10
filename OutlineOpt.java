@@ -1,5 +1,3 @@
-package sortNum;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,7 +10,7 @@ public class OutlineOpt {
 	private int end;
 	private int height;
 	private List<List<Integer>> result;
-	private int[][] partRange; 	//partRangeÓÃÓÚ±£´æÒ»¶ÎÁ¬Ğø½¨ÖşÖĞÒÑ±»Õ¼ÓÃÇøÓòµÄÇé¿ö
+	private int[][] partRange; 	//partRangeç”¨äºä¿å­˜ä¸€æ®µè¿ç»­å»ºç­‘ä¸­å·²è¢«å ç”¨åŒºåŸŸçš„æƒ…å†µ
 	private int blockindex;
 	public  List<List<Integer>> buildingOutline(int[][] buildings) {
 		result = new ArrayList<List<Integer>>();
@@ -36,33 +34,33 @@ public class OutlineOpt {
 				}		
 			}	
 		});
-		//µ±Ç°¶Î½¨ÖşÂÖÀªµÄÆğµã½¨ÖşË÷Òı
+		//å½“å‰æ®µå»ºç­‘è½®å»“çš„èµ·ç‚¹å»ºç­‘ç´¢å¼•
 		int startIndex=0;
-		//ÏÂ¶Î½¨ÖşÂÖÀªµÄÆğµã½¨ÖşË÷Òı
+		//ä¸‹æ®µå»ºç­‘è½®å»“çš„èµ·ç‚¹å»ºç­‘ç´¢å¼•
 		int endIndex=0;
 		while(true){
 			start = buildings[startIndex][0];
 			end = buildings[startIndex][1];
 			height = buildings[startIndex][2];
-			//Ò»¶ÎÂÖÀªµÄÆğµã
+			//ä¸€æ®µè½®å»“çš„èµ·ç‚¹
 			//int partStart=start;
-			//Ò»¶ÎÂÖÀªµÄÖÕµã
+			//ä¸€æ®µè½®å»“çš„ç»ˆç‚¹
 			int partEnd=end;
-			//±éÀúbuildingsÕÒ³öÒ»¶ÎÏàÁÚ½¨Öş
+			//éå†buildingsæ‰¾å‡ºä¸€æ®µç›¸é‚»å»ºç­‘
 			for(int i=startIndex+1;i<buildings.length;i++){
 				if(buildings[i][0]<=partEnd){
 					if(buildings[i][1]>partEnd){
 						partEnd=buildings[i][1];
 					}
 					if(i==buildings.length-1)
-						endIndex=i+1;	//·ÀÖ¹ÒÅÂ©×îºóµÄ½¨Öş
+						endIndex=i+1;	//é˜²æ­¢é—æ¼æœ€åçš„å»ºç­‘
 				}
 				else{
 					endIndex=i;
 					break;
 				}
 			}
-			//µ±Ç°Ë÷ÒıÒÑÖÁ×îÖÕ½¨Öş£¬¶Ô½á¹û½øĞĞÅÅĞò²¢ÍË³öÑ­»·
+			//å½“å‰ç´¢å¼•å·²è‡³æœ€ç»ˆå»ºç­‘ï¼Œå¯¹ç»“æœè¿›è¡Œæ’åºå¹¶é€€å‡ºå¾ªç¯
 			if(startIndex==endIndex){
 				Collections.sort(result,new Comparator<List<Integer>>() {
 					@Override
@@ -80,7 +78,7 @@ public class OutlineOpt {
 				break;
 			}
 			int[][] partBuildings=Arrays.copyOfRange(buildings, startIndex, endIndex);
-			//°´¸ß¶È´Ó¸ßµ½µÍÖØĞÂ¸øpartBuildingsÅÅĞò
+			//æŒ‰é«˜åº¦ä»é«˜åˆ°ä½é‡æ–°ç»™partBuildingsæ’åº
 			Arrays.sort(partBuildings, new Comparator<int[]>() {
 				@Override
 				public int compare(int[] a, int[] b) {
@@ -101,7 +99,7 @@ public class OutlineOpt {
 			start=partBuildings[0][0];
 			end=partBuildings[0][1];
 			height=partBuildings[0][2];
-			//ÖØÖÃpartRange
+			//é‡ç½®partRange
 			//partRange.clear();
 			if(partBuildings.length<=500)
 				partRange=new int[partBuildings.length*2][2];
@@ -111,23 +109,23 @@ public class OutlineOpt {
 				int startBlock=-1;
 				int endBlock=-1;
 				if((i!=partBuildings.length)&&(partBuildings[i][2]==height)&&(partBuildings[i][0]<=end)){
-					//ÈôÁ½¶Î½¨Öş¸ß¶ÈÏàµÈ£¬ÇÒÏà»¥ÓĞÖØºÏ£¬ÔòºÏ²¢
+					//è‹¥ä¸¤æ®µå»ºç­‘é«˜åº¦ç›¸ç­‰ï¼Œä¸”ç›¸äº’æœ‰é‡åˆï¼Œåˆ™åˆå¹¶
 					end=partBuildings[i][1]>end ? partBuildings[i][1] : end;
 					continue;
 				}
 				else{
 					if(partRange.length==0){
 						addResult();
-						//Ğ´ÈëÒÑÕ¼ÓÃÇøÓò
+						//å†™å…¥å·²å ç”¨åŒºåŸŸ
 						addBlock();
 					}
 					else{
 						for(int j=0;j<partRange.length;j++){
-							//ĞÂ½¨ÖşÆğµãĞ¡ÓÚÄ³ÒÑÕ¼ÓÃÇøÓòµÄÖÕµãÊ±£¬¼ÇÂ¼ÆğµãËùÔÚµÄÇø¿é£¨½ö¼ÇÂ¼Ò»´Î£©
+							//æ–°å»ºç­‘èµ·ç‚¹å°äºæŸå·²å ç”¨åŒºåŸŸçš„ç»ˆç‚¹æ—¶ï¼Œè®°å½•èµ·ç‚¹æ‰€åœ¨çš„åŒºå—ï¼ˆä»…è®°å½•ä¸€æ¬¡ï¼‰
 							if((startBlock<0)&&(start<(partRange[j][1]))){
 								startBlock=j; 
 							}
-							//ĞÂ½¨ÖşÖÕµãĞ¡ÓÚÄ³ÒÑÕ¼ÓÃÇøÓòµÄÆğµãÊ±£¬¼ÇÂ¼ÖÕµãËùÔÚµÄÇø¿é
+							//æ–°å»ºç­‘ç»ˆç‚¹å°äºæŸå·²å ç”¨åŒºåŸŸçš„èµ·ç‚¹æ—¶ï¼Œè®°å½•ç»ˆç‚¹æ‰€åœ¨çš„åŒºå—
 							if(((partRange[j][0])==0)||(end<(partRange[j][0]))){
 								if(partRange[j][0]==0)
 									endBlock=-1;
@@ -136,20 +134,20 @@ public class OutlineOpt {
 								break;
 							}
 						}
-						//µ±Ç°½¨ÖşÓëÒÑÕ¼ÓÃÇøÓòÎŞÖØºÏ£¬Ö±½ÓĞ´Èë½á¹û
+						//å½“å‰å»ºç­‘ä¸å·²å ç”¨åŒºåŸŸæ— é‡åˆï¼Œç›´æ¥å†™å…¥ç»“æœ
 						if(startBlock==endBlock){
 							addResult();
 							addBlock();
 						}
-						//µ±Ç°½¨ÖşÓëÒÑÕ¼ÓÃÇøÓòÓĞÖØºÏ£¬½«Î´ÖØºÏ²¿·ÖĞ´Èë½á¹û
+						//å½“å‰å»ºç­‘ä¸å·²å ç”¨åŒºåŸŸæœ‰é‡åˆï¼Œå°†æœªé‡åˆéƒ¨åˆ†å†™å…¥ç»“æœ
 						else{
-							//endBlockÎª-1ËµÃ÷¸Ã½¨Öş·¶Î§ÒÑ´ïµ½×îÓÒ·½Çø¿é
+							//endBlockä¸º-1è¯´æ˜è¯¥å»ºç­‘èŒƒå›´å·²è¾¾åˆ°æœ€å³æ–¹åŒºå—
 							if(endBlock==-1)
 								endBlock=blockindex;
 							int startBackup=start;
 							int endBackup=end;
 							for(int k=startBlock;k<=endBlock;k++){
-								//Ê×Çø
+								//é¦–åŒº
 								if(k==startBlock){
 									if(startBackup<(partRange[k][0])){
 										end=(partRange[k][0]);
@@ -157,7 +155,7 @@ public class OutlineOpt {
 										addBlock();
 									}
 								}
-								//Î²Çø
+								//å°¾åŒº
 								if(k==endBlock){
 									if(endBackup>(partRange[k-1][1])){
 										start=(partRange[k-1][1]);
@@ -166,7 +164,7 @@ public class OutlineOpt {
 										addBlock();
 									}
 								}
-								//´©Ô½ÇøÓò
+								//ç©¿è¶ŠåŒºåŸŸ
 								if((k!=startBlock)&&(k!=endBlock)){
 									start=partRange[k-1][1];
 									end=partRange[k][0];
@@ -178,7 +176,7 @@ public class OutlineOpt {
 					}
 				}
 				if(i!=partBuildings.length){
-					//¶ÔpartRangeÎ¬»¤£¨´Ó×óµ½ÓÒÅÅĞòºóºÏ²¢ÏàÁÚÇøÓò£©
+					//å¯¹partRangeç»´æŠ¤ï¼ˆä»å·¦åˆ°å³æ’åºååˆå¹¶ç›¸é‚»åŒºåŸŸï¼‰
 					Arrays.sort(partRange,new Comparator<int[]>() {
 						@Override
 						public int compare(int[] a, int[] b) {
@@ -195,10 +193,10 @@ public class OutlineOpt {
 							start=(partRange[m][0]);
 							end=(partRange[m+1][1]);
 							remRepeat(partRange,m);
-							m--;	//½«ºÏ²¢ºóÇø¼äÓëÏÂ¸öÇø¼ä¼ÌĞø±È½Ï
+							m--;	//å°†åˆå¹¶ååŒºé—´ä¸ä¸‹ä¸ªåŒºé—´ç»§ç»­æ¯”è¾ƒ
 						}
 					}
-					//¸üĞÂstart¡¢end¡¢height
+					//æ›´æ–°startã€endã€height
 					start=partBuildings[i][0];
 					end=partBuildings[i][1];
 					height=partBuildings[i][2];
@@ -210,7 +208,7 @@ public class OutlineOpt {
 		}
 		return result;
 	}
-	//È¥³ıÁ½¸öÏàÁÚÇø¼ä²¢½«ºÏ²¢ºóµÄĞÂÇø¼ä·ÅÈëpartRange
+	//å»é™¤ä¸¤ä¸ªç›¸é‚»åŒºé—´å¹¶å°†åˆå¹¶åçš„æ–°åŒºé—´æ”¾å…¥partRange
 	private void remRepeat(int[][] partRange, int index) {
 		addBlock(index);
 		blockindex--;
