@@ -1,2 +1,2 @@
 # LintCode
-LintCode中我所提交问题的Java代码
+LintCode中已刷题目的代码总结（使用Java）
