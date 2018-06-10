@@ -28,7 +28,7 @@ O(n)时间，O(k)的额外空间<br>
 水平面上有 N 座大楼，每座大楼都是矩阵的形状，可以用一个三元组表示 (start, end, height)，分别代表其在x轴上的起点，终点和高度。大楼之间从远处看可能会重叠，求出 N 座大楼的外轮廓线。<br>
 外轮廓线的表示方法为若干三元组，每个三元组包含三个数字 (start, end, height)，代表这段轮廓的起始位置，终止位置和高度。
 请注意合并同样高度的相邻轮廓，不同的轮廓线在x轴上不能有重叠。<br>
-![](https://lintcode-media.s3.amazonaws.com/problem/jiuzhang3.jpg)<br>
+![ ](https://lintcode-media.s3.amazonaws.com/problem/jiuzhang3.jpg)<br>
 难度：超难<br>
 ### 样例<br>
 给出三座大楼：<br>
