@@ -1,5 +1,5 @@
 # LintCode
-LintCode中已刷题目的代码总结（语言为Java）
+LintCode中已刷题目的代码总结
 
 
 ## 1、滑动窗口的最大值
