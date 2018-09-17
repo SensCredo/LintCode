@@ -1,11 +1,10 @@
-package sortNum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
 
-//LintCode»¬¶¯´°¿ÚµÄ×î´óÖµ
+//LintCodeæ»‘åŠ¨çª—å£çš„æœ€å¤§å€¼
 public class ArrWin {
 	    public static ArrayList<Integer> maxSlidingWindow(int[] nums, int k) {
 	    	ArrayList<Integer> result=new ArrayList<Integer>();
@@ -24,7 +23,7 @@ public class ArrWin {
 	    		}
 	    	return result;
 	    }
-	    //ÓÅ»¯ºóµÄËã·¨
+	    //ä¼˜åŒ–åçš„ç®—æ³•
 	    public static ArrayList<Integer> maxSlidingWindow2(int[] nums, int k) {
 	    	ArrayList<Integer> result=new ArrayList<Integer>();
 	    	if(k>=nums.length){
@@ -45,7 +44,7 @@ public class ArrWin {
 		    		result.add(MaxNum);
 					for(int j=1;j<=nums.length-k;j++){	
 						if(j<=MaxIndex){
-							//Èô´°¿ÚÍâÏÂÒ»¸öÖµ´óÓÚÄ¿Ç°´°¿ÚÖĞµÄ×î´óÖµ£¬¸üĞÂÄ¿Ç°µÄMaxNum¼°MaxIndex
+							//è‹¥çª—å£å¤–ä¸‹ä¸€ä¸ªå€¼å¤§äºç›®å‰çª—å£ä¸­çš„æœ€å¤§å€¼ï¼Œæ›´æ–°ç›®å‰çš„MaxNumåŠMaxIndex
 							if(nums[j+k-1]>=MaxNum){
 								MaxNum=nums[j+k-1];
 								MaxIndex=j+k-1;
@@ -55,7 +54,7 @@ public class ArrWin {
 								result.add(MaxNum);
 						}
 						else{
-							//ÔİÎ´ÕÒµ½¸ü´óÖµ£¬Í¬Ê±Ö®Ç°×î´óÖµÒÑÔÚ´°¿ÚÍâ£¬ÔÚÄ¿Ç°´°¿ÚÄÚÖØĞÂÑ°ÕÒ
+							//æš‚æœªæ‰¾åˆ°æ›´å¤§å€¼ï¼ŒåŒæ—¶ä¹‹å‰æœ€å¤§å€¼å·²åœ¨çª—å£å¤–ï¼Œåœ¨ç›®å‰çª—å£å†…é‡æ–°å¯»æ‰¾
 							temp=Arrays.copyOfRange(nums, j, j+k);
 							MaxNum=0;
 							for (int i = 0; i < temp.length; i++) {
