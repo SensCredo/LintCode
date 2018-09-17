@@ -1,4 +1,3 @@
-package sortNum;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,8 +15,8 @@ import org.junit.Test;
 
 public class LintCode {
 
-	//LintCode½×ÌİÑµÁ·(Google)
-	//1-¼òµ¥
+	//LintCodeé˜¶æ¢¯è®­ç»ƒ(Google)
+	//1-ç®€å•
 	//1.Toeplitz Matrix
 	public boolean isToeplitzMatrix(int[][] matrix) {
         // Write your code here
@@ -49,29 +48,29 @@ public class LintCode {
 	   }
 	public String FindMin(int colorValue) {
 		String color=toHexString(colorValue);
-		//ÈôÑÕÉ«Á½Î»×Ö·ûÏàµÈ£¬ÔòÑÕÉ«±¾ÉíÎª×îÏàËÆÖµ
+		//è‹¥é¢œè‰²ä¸¤ä½å­—ç¬¦ç›¸ç­‰ï¼Œåˆ™é¢œè‰²æœ¬èº«ä¸ºæœ€ç›¸ä¼¼å€¼
 		if((color.charAt(0))==(color.charAt(1)))
 			return color;
-		//´æ´¢Ïà±ÈÔ­ÊıÖµ½Ï´óµÄÑÕÉ«Öµ
+		//å­˜å‚¨ç›¸æ¯”åŸæ•°å€¼è¾ƒå¤§çš„é¢œè‰²å€¼
 		int colorValue_L=colorValue;
-		//´æ´¢Ïà±ÈÔ­ÊıÖµ½ÏĞ¡µÄÑÕÉ«Öµ
+		//å­˜å‚¨ç›¸æ¯”åŸæ•°å€¼è¾ƒå°çš„é¢œè‰²å€¼
 		int colorValue_S=colorValue;
-		//Ñ°ÕÒ×î½Ó½üµÄ×Ö·ûÏàÍ¬µÄ½Ï´óµÄÑÕÉ«Öµ
+		//å¯»æ‰¾æœ€æ¥è¿‘çš„å­—ç¬¦ç›¸åŒçš„è¾ƒå¤§çš„é¢œè‰²å€¼
 		while(color.charAt(0)!=color.charAt(1)){
 			colorValue_L=colorValue_L+1;
 			color=toHexString(colorValue_L);
 		}
 		color=toHexString(colorValue_S);
-		//Ñ°ÕÒ×î½Ó½üµÄ×Ö·ûÏàÍ¬µÄ½ÏĞ¡µÄÑÕÉ«Öµ
+		//å¯»æ‰¾æœ€æ¥è¿‘çš„å­—ç¬¦ç›¸åŒçš„è¾ƒå°çš„é¢œè‰²å€¼
 		while(color.charAt(0)!=color.charAt(1)){
 			colorValue_S=colorValue_S-1;
 			color=toHexString(colorValue_S);
 		}
-		//Ñ°ÕÒ½Ï´óÖµÓë½ÏĞ¡ÖµÖ®¼ä¸ü½Ó½üµÄÖµ
+		//å¯»æ‰¾è¾ƒå¤§å€¼ä¸è¾ƒå°å€¼ä¹‹é—´æ›´æ¥è¿‘çš„å€¼
 		color=Math.pow(colorValue-colorValue_L, 2)<Math.pow(colorValue-colorValue_S, 2) ? toHexString(colorValue_L):toHexString(colorValue_S);
 		return color;
 	}
-	//½«16½øÖÆÊı×Ö×ªÎª×Ö·û£¬²¢¶ÔÒ»Î»Êı×ÖÇ°Ãæ²¹0
+	//å°†16è¿›åˆ¶æ•°å­—è½¬ä¸ºå­—ç¬¦ï¼Œå¹¶å¯¹ä¸€ä½æ•°å­—å‰é¢è¡¥0
 	public String toHexString(int colorValue) {
 		String color=Integer.toHexString(colorValue);
 		if (color.length()==1)
@@ -79,15 +78,15 @@ public class LintCode {
 		return color;
 	}
 	
-	//3.·­×ªÓÎÏ·
+	//3.ç¿»è½¬æ¸¸æˆ
 	public List<String> generatePossibleNextMoves(String s) {
-		//¶¨ÒåÕıÔòÊ½Æ¥Åä++
+		//å®šä¹‰æ­£åˆ™å¼åŒ¹é…++
 		String moveReg="[+][+]";
 		Pattern movePat=Pattern.compile(moveReg);
 		Matcher moveMat=movePat.matcher(s);
 		int start=0;
 		List<String> NextMoves=new ArrayList<String>();
-		//ÕÒ³öÆ¥ÅäÏîºóÒÔ--½øĞĞÌæ»»´æÈëlist,²¢´Ó´Ë´ÎÆ¥ÅäµÄµÚÒ»¸ö+ºÅºó¼ÌĞø½øĞĞ¼ìË÷
+		//æ‰¾å‡ºåŒ¹é…é¡¹åä»¥--è¿›è¡Œæ›¿æ¢å­˜å…¥list,å¹¶ä»æ­¤æ¬¡åŒ¹é…çš„ç¬¬ä¸€ä¸ª+å·åç»§ç»­è¿›è¡Œæ£€ç´¢
 		while(moveMat.find(start)){
 			start=moveMat.end()-1;
 			NextMoves.add(s.substring(0, start-1)+"--"+s.substring(start+1));
@@ -95,12 +94,12 @@ public class LintCode {
 		return NextMoves;
     }
 	
-	//4.ÓĞĞ§µ¥´Ê´Ê¹ã³¡
+	//4.æœ‰æ•ˆå•è¯è¯å¹¿åœº
 	public boolean validWordSquare(String[] words) {
 		for (int i = 0; i < words.length; i++) {
 			char[] temp=new char[words[i].length()];
 			for (int j = 0; j < words[i].length(); j++) {
-				//µ±³öÏÖÊı×é¹ı½çÒì³£Ê±¼´ËµÃ÷¸Ãµ¥´ÊĞòÁĞÎŞ·¨¹¹³ÉÓĞĞ§µ¥´Ê¹ã³¡£¬²¶»ñ¸ÃÒì³£²¢·µ»Øfalse
+				//å½“å‡ºç°æ•°ç»„è¿‡ç•Œå¼‚å¸¸æ—¶å³è¯´æ˜è¯¥å•è¯åºåˆ—æ— æ³•æ„æˆæœ‰æ•ˆå•è¯å¹¿åœºï¼Œæ•è·è¯¥å¼‚å¸¸å¹¶è¿”å›false
 				try {
 					temp[j]=words[j].charAt(i);
 				} catch (Exception e) {
@@ -118,10 +117,10 @@ public class LintCode {
 	public String addStrings(String num1, String num2) {
 		int size1=num1.length();
 		int size2=num2.length();
-		//½ç¶¨Êı×Ö×Ö·û·¶Î§
+		//ç•Œå®šæ•°å­—å­—ç¬¦èŒƒå›´
 		final byte START_CHAR='0';
 		final byte FINAL_CHAR='9';
-		//ÅĞ¶Ï½øÎ»·û
+		//åˆ¤æ–­è¿›ä½ç¬¦
 		boolean carry=false;
 		int shortSize;
 		int longSize;
@@ -144,10 +143,10 @@ public class LintCode {
 		for (int i = shortSize-1; i>=0; i--) {
 			char localSum=(char)(shortNum[i]+longNum[longSize-(shortSize-i)]-START_CHAR);
 			if(carry)
-				//½øÎ»²Ù×÷£¨¼Ó·¨ÖĞ½øÎ»ÊıÖ»»áÎª1£©
+				//è¿›ä½æ“ä½œï¼ˆåŠ æ³•ä¸­è¿›ä½æ•°åªä¼šä¸º1ï¼‰
 				localSum=(char) (localSum+1);
 			if(localSum>FINAL_CHAR){
-				//ÈôĞèÒª½øÎ»£¬ÔòlocalSum±£Áô¸öÎ»×Ö·û
+				//è‹¥éœ€è¦è¿›ä½ï¼Œåˆ™localSumä¿ç•™ä¸ªä½å­—ç¬¦
 				localSum=(char) (localSum-10);
 				carry=true;
 			}
@@ -155,20 +154,20 @@ public class LintCode {
 				carry=false;
 			sum[longSize-(shortSize-i)]=localSum;
 		}
-		//Î»ÊıÏàÍ¬Çé¿ö
+		//ä½æ•°ç›¸åŒæƒ…å†µ
 		if(shortSize==longSize){
 			if(carry)
 				result="1"+new String(sum);
 			else
 				result=new String(sum);
 		}
-		//Î»Êı²»Í¬Çé¿ö
+		//ä½æ•°ä¸åŒæƒ…å†µ
 		else{
 				for (int i = longSize-shortSize-1; i >=0; i--) {
 					if(carry){
 						char localSum=(char) (longNum[i]+1);
 						if(localSum>FINAL_CHAR){
-							//ÈôĞèÒª½øÎ»£¬ÔòlocalSum±£Áô¸öÎ»×Ö·û
+							//è‹¥éœ€è¦è¿›ä½ï¼Œåˆ™localSumä¿ç•™ä¸ªä½å­—ç¬¦
 							localSum=(char) (localSum-10);
 							carry=true;
 						}
@@ -187,7 +186,7 @@ public class LintCode {
 		return result;
     }
 	
-	//7.Õ¤À¸È¾É«
+	//7.æ …æ æŸ“è‰²
     public int numWays(int n, int k) {
     	int[] ways=new int[n];
     	ways[0]=k;
@@ -196,7 +195,7 @@ public class LintCode {
     	if(n<=2)
     		return ways[n-1];
     	else{
-    		//²ÉÓÃ¶¯Ì¬¹æ»®·¨£¬µİÍÆ³ön¸ùÖù×ÓÊ±µÄÈ¾É«·½°¸Êı
+    		//é‡‡ç”¨åŠ¨æ€è§„åˆ’æ³•ï¼Œé€’æ¨å‡ºnæ ¹æŸ±å­æ—¶çš„æŸ“è‰²æ–¹æ¡ˆæ•°
     		for (int i = 2; i < n; i++) {
 				ways[i]=ways[i-1]*(k-1)+ways[i-2]*(k-1);
 			}
@@ -204,15 +203,15 @@ public class LintCode {
         return ways[n-1];
     }
     
-    //8.ÓĞĞ§µÄÀ¨ºÅĞòÁĞ
+    //8.æœ‰æ•ˆçš„æ‹¬å·åºåˆ—
     public boolean isValidParentheses(String s) {
     	Stack<Character> stack = new Stack<Character>();
     	for (int i = 0; i < s.length(); i++) {
     		char temp=s.charAt(i);
-    		//ÈôÎª×óÀ¨ºÅ£¬Ñ¹ÈëÕ»ÖĞ
+    		//è‹¥ä¸ºå·¦æ‹¬å·ï¼Œå‹å…¥æ ˆä¸­
 			if(temp=='(' || temp=='[' || temp=='{')
 				stack.push(temp);
-			//ÈôÎªÓÒÀ¨ºÅ£¬µ¯³öÕ»¶¥À¨ºÅ£¬ÅĞ¶ÏÊÇ·ñÆ¥Åä
+			//è‹¥ä¸ºå³æ‹¬å·ï¼Œå¼¹å‡ºæ ˆé¡¶æ‹¬å·ï¼Œåˆ¤æ–­æ˜¯å¦åŒ¹é…
 			else{
 				if(stack.empty())
 		    		return false;
@@ -238,7 +237,7 @@ public class LintCode {
     		return false;
     }
     
-    //9.ºÏ²¢Çø¼ä
+    //9.åˆå¹¶åŒºé—´
     private class Interval {
     	int start, end;
     	Interval(int start, int end) {
@@ -255,7 +254,7 @@ public class LintCode {
     	if(intervals.size()==0 || intervals.size()==1)
     		return intervals;
     	List<Interval> newInts=new ArrayList<Interval>();
-    	//¶Ôintervals°´start´óĞ¡½øĞĞÅÅĞò£¨´ÓĞ¡µ½´ó£©
+    	//å¯¹intervalsæŒ‰startå¤§å°è¿›è¡Œæ’åºï¼ˆä»å°åˆ°å¤§ï¼‰
     	Collections.sort(intervals,new Comparator<Interval>() {
 			@Override
 			public int compare(Interval a, Interval b) {
@@ -267,18 +266,18 @@ public class LintCode {
 					return 0;
 			}
 		});
-    	//´æÖü×óÓÒ±ß½ç
+    	//å­˜è´®å·¦å³è¾¹ç•Œ
     	int leftBorder=intervals.get(0).start;
     	int rightBorder=intervals.get(0).end;
     	for (int i = 1; i < intervals.size(); i++) {
     		Interval in=intervals.get(i);
-    		//ÈôĞÂÇø¼äµÄ×ó¶Ë´óÓÚÓÒ±ß½ç£¬ÔòÎªĞÂµÄÇø¼ä·¶Î§
+    		//è‹¥æ–°åŒºé—´çš„å·¦ç«¯å¤§äºå³è¾¹ç•Œï¼Œåˆ™ä¸ºæ–°çš„åŒºé—´èŒƒå›´
     		if(in.start>rightBorder){
     			newInts.add(new Interval(leftBorder, rightBorder));
     			leftBorder=in.start;
     			rightBorder=in.end;
     		}
-    		//ÈôĞÂÇø¼ä×ó¶ËĞ¡ÓÚµÈÓÚÓÒ±ß½ç£¬ÔòÓĞÖØµş·¶Î§£¬½øĞĞºÏ²¢
+    		//è‹¥æ–°åŒºé—´å·¦ç«¯å°äºç­‰äºå³è¾¹ç•Œï¼Œåˆ™æœ‰é‡å èŒƒå›´ï¼Œè¿›è¡Œåˆå¹¶
     		else{
     			if(in.end>rightBorder)
     				rightBorder=in.end;
@@ -288,10 +287,10 @@ public class LintCode {
         return newInts;
     }
     
-    //10.¼ÓÒ»
+    //10.åŠ ä¸€
     public int[] plusOne(int[] digits) {
 		int result[]=new int[digits.length+1];
-		//ÓÃÓÚÅĞ¶ÏÊÇ·ñ½øÎ»
+		//ç”¨äºåˆ¤æ–­æ˜¯å¦è¿›ä½
 		boolean carry=false;
 		for (int i = digits.length-1; i >= 0; i--) {
 			if(carry){
@@ -305,7 +304,7 @@ public class LintCode {
 				}
 			}
 			else{
-				//¶ÔÓÚÄ©Î»¼Ó1
+				//å¯¹äºæœ«ä½åŠ 1
 				if(i == digits.length-1){
 					if(digits[i]!=9)
 						result[i+1]=digits[i]+1;
@@ -314,7 +313,7 @@ public class LintCode {
 						carry=true;
 					}
 				}
-				//ÆäËüÎ»ÔÚ²»½øÎ»Çé¿öÏÂ±£³Ö²»±ä
+				//å…¶å®ƒä½åœ¨ä¸è¿›ä½æƒ…å†µä¸‹ä¿æŒä¸å˜
 				else
 					result[i+1]=digits[i];
 			}	
@@ -326,12 +325,12 @@ public class LintCode {
     	return Arrays.copyOfRange(result, 1, result.length);
     }
     
-    //2-ÖĞµÈ
+    //2-ä¸­ç­‰
 	//1.Beautiful Arrangement
     public int countArrangement(int N) {
-    	//Çé¿öÊı
+    	//æƒ…å†µæ•°
     	int caseNum=0;
-    	//Êı×éused¼ÇÂ¼Êı×ÖÊ¹ÓÃÇé¿ö£¬²¢ÒÔfalse³õÊ¼Ìî³ä£¨false±íÊ¾Î´Ê¹ÓÃ£¬true±íÊ¾ÒÑÊ¹ÓÃ£©
+    	//æ•°ç»„usedè®°å½•æ•°å­—ä½¿ç”¨æƒ…å†µï¼Œå¹¶ä»¥falseåˆå§‹å¡«å……ï¼ˆfalseè¡¨ç¤ºæœªä½¿ç”¨ï¼Œtrueè¡¨ç¤ºå·²ä½¿ç”¨ï¼‰
     	boolean[] used=new boolean[N];
     	Arrays.fill(used, false);
     	caseNum=countNum(N,1,used,caseNum);
@@ -343,7 +342,7 @@ public class LintCode {
 			caseNum++;
 			return caseNum;
 		}
-		//¶Ô·ûºÏµÄÇé¿ö½øĞĞ²éÕÒ£¬µ±¸ÃÎ»²éÕÒµ½ºÏÊÊÊı×ÖºóÍ¨¹ıµİ¹éµÄ·½Ê½½øĞĞÏÂÒ»Î»Êı×ÖµÄ²éÕÒ£¨»ØËİ·¨£©
+		//å¯¹ç¬¦åˆçš„æƒ…å†µè¿›è¡ŒæŸ¥æ‰¾ï¼Œå½“è¯¥ä½æŸ¥æ‰¾åˆ°åˆé€‚æ•°å­—åé€šè¿‡é€’å½’çš„æ–¹å¼è¿›è¡Œä¸‹ä¸€ä½æ•°å­—çš„æŸ¥æ‰¾ï¼ˆå›æº¯æ³•ï¼‰
 		for (int i = 1; i <= n; i++) {
 			if(!used[i-1] && (i%pos==0 || pos%i ==0)){
 				used[i-1]=true;
@@ -369,16 +368,16 @@ public class LintCode {
 		}
 	}
 	public int kthSmallest(TreeNode root, int k) {
-		//historyNode¼ÇÂ¼ÀúÊ··ÃÎÊ¹ıµÄ½Úµã£¨²¢±£³ÖÃ¿¸ö½ÚµãµÄÇ°Ò»¸öÎªÆä¸¸½Úµã£©
+		//historyNodeè®°å½•å†å²è®¿é—®è¿‡çš„èŠ‚ç‚¹ï¼ˆå¹¶ä¿æŒæ¯ä¸ªèŠ‚ç‚¹çš„å‰ä¸€ä¸ªä¸ºå…¶çˆ¶èŠ‚ç‚¹ï¼‰
 		LinkedList<TreeNode> historyNode=new LinkedList<TreeNode>();
 		historyNode.add(root);
-		//²éÕÒ¶ş²æÊ÷×îĞ¡Öµ
+		//æŸ¥æ‰¾äºŒå‰æ ‘æœ€å°å€¼
 		TreeNode currentNode=historyNode.getLast();
 		while(currentNode.left!=null){
 			historyNode.add(currentNode.left);
 			currentNode=historyNode.getLast();
 		}
-		//ÒÀ´Î²éÕÒµÚkĞ¡µÄÔªËØ
+		//ä¾æ¬¡æŸ¥æ‰¾ç¬¬kå°çš„å…ƒç´ 
 		TreeNode smallerNode=null;
 		while(k>0){
 			smallerNode = findSmaller(historyNode);
@@ -388,12 +387,12 @@ public class LintCode {
     }
 	private TreeNode findSmaller(LinkedList<TreeNode> historyNode) {
 		TreeNode smallerNode=historyNode.getLast();
-		//½«µ±Ç°µÄ½ÏĞ¡½ÚµãÉáÆú£¨³ı½öÊ£Ò»½ÚµãÇé¿öÍâ£©
+		//å°†å½“å‰çš„è¾ƒå°èŠ‚ç‚¹èˆå¼ƒï¼ˆé™¤ä»…å‰©ä¸€èŠ‚ç‚¹æƒ…å†µå¤–ï¼‰
 		if(historyNode.size()>1)
 			historyNode.removeLast();
 		if(smallerNode.right==null)
 			return smallerNode;
-		//¶ÔÓÒ½ÚµãÏÂµÄ×îĞ¡Öµ½øĞĞËÑË÷£¨±£´æ²éÑ¯¹ıµÄ½Úµã£©
+		//å¯¹å³èŠ‚ç‚¹ä¸‹çš„æœ€å°å€¼è¿›è¡Œæœç´¢ï¼ˆä¿å­˜æŸ¥è¯¢è¿‡çš„èŠ‚ç‚¹ï¼‰
 		TreeNode currentNode=smallerNode.right;
 		historyNode.add(currentNode);
 		while(currentNode.left!=null){
@@ -403,7 +402,7 @@ public class LintCode {
 		return smallerNode;
 	}
 	
-	//3.Longest Absolute File Path£¨´ıÍêÉÆ£©
+	//3.Longest Absolute File Pathï¼ˆå¾…å®Œå–„ï¼‰
 	private List<Integer> lengths=new ArrayList<Integer>();
 	
 	public int lengthLongestPath(String input) {
@@ -419,7 +418,7 @@ public class LintCode {
     }
 
 	private void searchPathLength(String[] paths, String regex, int length) {
-		//Ã¿´Î²éÕÒ½ö½«µÚÒ»¸ö²éÕÒµ½µÄÎÄ¼ş¼Ğ³¤¶È¼ÆÈë×ÜÎÄ¼ş³¤¶È£¨¸ÃÎÄ¼ş¼Ğ´¦ÓÚÎÄ¼şÂ·¾¶ÉÏ£©
+		//æ¯æ¬¡æŸ¥æ‰¾ä»…å°†ç¬¬ä¸€ä¸ªæŸ¥æ‰¾åˆ°çš„æ–‡ä»¶å¤¹é•¿åº¦è®¡å…¥æ€»æ–‡ä»¶é•¿åº¦ï¼ˆè¯¥æ–‡ä»¶å¤¹å¤„äºæ–‡ä»¶è·¯å¾„ä¸Šï¼‰
 		boolean change=false;
 		for (String path : paths) {
 			if(!path.contains("\t")){
@@ -434,34 +433,34 @@ public class LintCode {
 				}	
 			}
 			else{
-				//´´½¨¸üÉîÒ»¼¶ÕıÔò±í´ïÊ½
+				//åˆ›å»ºæ›´æ·±ä¸€çº§æ­£åˆ™è¡¨è¾¾å¼
 				String deeperRegex="\\n";
 				for (int i = 0; i < regex.length()/2-1; i++) {
 					//deeperRegex=deeperRegex+"[\\t[ ]+]";
 					deeperRegex=deeperRegex+"\\t";
 				}
 				deeperRegex=deeperRegex+"\\w";
-				//ÀûÓÃµİ¹é¶Ô¸üÉîÒ»²ãÂ·¾¶³¤¶È½øĞĞ²éÕÒ
+				//åˆ©ç”¨é€’å½’å¯¹æ›´æ·±ä¸€å±‚è·¯å¾„é•¿åº¦è¿›è¡ŒæŸ¥æ‰¾
 				String[] deeperPaths=path.split(deeperRegex);
 				searchPathLength(deeperPaths,deeperRegex,length);
 			}
 		}
 	}
 	
-	//ex.´ò½Ù·¿Îİ
+	//ex.æ‰“åŠ«æˆ¿å±‹
 	public long houseRobber(int[] A) {
 		if(A.length==0)
 			return 0;
-        // ¼ÇÂ¼ÉÏ´ÎËù»ñÈ¡µÄ½ğ¶î£¨³õÊ¼Ê±ÎªA[0]£©
+        // è®°å½•ä¸Šæ¬¡æ‰€è·å–çš„é‡‘é¢ï¼ˆåˆå§‹æ—¶ä¸ºA[0]ï¼‰
 		long money_last=A[0];
 		if(A.length==1)
 			return money_last;
-		//¼ÇÂ¼±¾´ÎËù»ñÈ¡µÄ½ğ¶î£¨³õÊ¼Ê±ÎªA[0]¼°A[1]ÖĞµÄ½Ï´óÖµ£©
+		//è®°å½•æœ¬æ¬¡æ‰€è·å–çš„é‡‘é¢ï¼ˆåˆå§‹æ—¶ä¸ºA[0]åŠA[1]ä¸­çš„è¾ƒå¤§å€¼ï¼‰
 		long money=Math.max(A[0], A[1]);
 		if(A.length==2)
 			return money;
 		for (int i = 2; i < A.length; i++) {
-			//ÀûÓÃ¶¯Ì¬¹æ»®£¬×î´ó½ğ¶îÎªMAX(ĞÂÔö·¿Îİ½ğ¶î+ÉÏÉÏ´Î×î´óÖµ£¬ÉÏ´Î×î´óÖµ)
+			//åˆ©ç”¨åŠ¨æ€è§„åˆ’ï¼Œæœ€å¤§é‡‘é¢ä¸ºMAX(æ–°å¢æˆ¿å±‹é‡‘é¢+ä¸Šä¸Šæ¬¡æœ€å¤§å€¼ï¼Œä¸Šæ¬¡æœ€å¤§å€¼)
 			long temp=money;
 			money=Math.max(money_last+A[i], money);
 			money_last=temp;
@@ -469,39 +468,39 @@ public class LintCode {
         return money;
     }
 	
-	//4.Õ¨µ¯Ï®»÷
+	//4.ç‚¸å¼¹è¢­å‡»
 	public int maxKilledEnemies(char[][] grid) {
 		int height=grid.length;
 		if(height==0)
 			return 0;
 		int width=grid[0].length;
-		//¼ÇÂ¼×î´óÏûÃğµĞÈËÊı
+		//è®°å½•æœ€å¤§æ¶ˆç­æ•Œäººæ•°
 		int maxNum=0;
-		//»º´æµ±Ç°ĞĞ¸÷ÔªËØÏûÃğµĞÈËÊı
+		//ç¼“å­˜å½“å‰è¡Œå„å…ƒç´ æ¶ˆç­æ•Œäººæ•°
 		int[] temp=new int[width];
-		//»º´æÃ¿ÁĞ¸÷ÔªËØÏûÃğÁĞµĞÈËÊı
+		//ç¼“å­˜æ¯åˆ—å„å…ƒç´ æ¶ˆç­åˆ—æ•Œäººæ•°
 		int[] rowTemp=new int[width];
-		//¼ÇÂ¼Ã¿ĞĞÊÇ·ñÓĞ¿ÕÎ»
+		//è®°å½•æ¯è¡Œæ˜¯å¦æœ‰ç©ºä½
 		boolean[] hasEmpty=new boolean[width];
 		for (int i = 0; i < height; i++) {
 			int lineKilled=0;
 			for (int j = 0; j < width; j++) {
-				//¼ÇÂ¼Ã¿ĞĞµÚÒ»¸ö¿ÕÎ»£¨ÈôÅöµ½Ç½ÔòÖØĞÂ¼ÆÊı£©£¬³õÊ¼»¯Îª-1
+				//è®°å½•æ¯è¡Œç¬¬ä¸€ä¸ªç©ºä½ï¼ˆè‹¥ç¢°åˆ°å¢™åˆ™é‡æ–°è®¡æ•°ï¼‰ï¼Œåˆå§‹åŒ–ä¸º-1
 				int lastEmpty=-1;
-				//µ±¸ÃÎ»ÖÃÎª0
+				//å½“è¯¥ä½ç½®ä¸º0
 				if(grid[i][j]=='0'){
-					//ÈôµÚÒ»¸ö¿ÕÎ»Î´¼ÇÂ¼£¬Ôò¼ÆËã±¾ĞĞÏûÃğµĞÈËÊı£¨·ñÔòÖ±½ÓÊ¹ÓÃlineKilledÊıÖµ£©
+					//è‹¥ç¬¬ä¸€ä¸ªç©ºä½æœªè®°å½•ï¼Œåˆ™è®¡ç®—æœ¬è¡Œæ¶ˆç­æ•Œäººæ•°ï¼ˆå¦åˆ™ç›´æ¥ä½¿ç”¨lineKilledæ•°å€¼ï¼‰
 					if(lastEmpty==-1){
 						lastEmpty=j;
 						lineKilled=0;
-						//Ïò×ó
+						//å‘å·¦
 						for (int k = j-1; k >= 0; k--) {
 							if(grid[i][k]=='E')
 								lineKilled++;
 							else if(grid[i][k]=='W')
 								break;	
 						}
-						//ÏòÓÒ
+						//å‘å³
 						for (int k = j+1; k < width; k++) {
 							if(grid[i][k]=='E')
 								lineKilled++;
@@ -510,26 +509,26 @@ public class LintCode {
 						}
 					}
 					hasEmpty[j]=true;
-					//temp[j]¼ÇÂ¼¸ÃĞĞÒÔ¼°ÉÏĞĞ¸ÃÎ»ÖÃµÄÏûÃğÊıÖĞ×î´óÖµ£¨ÓÃÓÚEÔö¼ÓÊ±µÄ¼ÆÊı£©
+					//temp[j]è®°å½•è¯¥è¡Œä»¥åŠä¸Šè¡Œè¯¥ä½ç½®çš„æ¶ˆç­æ•°ä¸­æœ€å¤§å€¼ï¼ˆç”¨äºEå¢åŠ æ—¶çš„è®¡æ•°ï¼‰
 					temp[j]=Math.max(lineKilled+rowTemp[j],temp[j]);
-					//¼ÇÂ¼×î´óÖµ
+					//è®°å½•æœ€å¤§å€¼
 					maxNum=Math.max(maxNum, temp[j]);
 				}
-				//µ±¸ÃÎ»ÖÃÎªE
+				//å½“è¯¥ä½ç½®ä¸ºE
 				else if(grid[i][j]=='E'){
 					rowTemp[j]=rowTemp[j]+1;
 					if(hasEmpty[j])
 						temp[j]++;
 						maxNum=Math.max(maxNum, temp[j]);
 				}
-				//µ±¸ÃÎ»ÖÃÎªW
+				//å½“è¯¥ä½ç½®ä¸ºW
 				else{
-					//¸ÃÎ»ÖÃËùÔÚ¼ÆÊıÇå¿Õ
+					//è¯¥ä½ç½®æ‰€åœ¨è®¡æ•°æ¸…ç©º
 					temp[j]=0;
 					rowTemp[j]=0;
-					//ÖØÖÃ¿ÕÎ»¼ÆÊı
+					//é‡ç½®ç©ºä½è®¡æ•°
 					lastEmpty=-1;
-					//¿ÕÎ»ÖÃÎªfalse
+					//ç©ºä½ç½®ä¸ºfalse
 					hasEmpty[j]=false;
 				}
 			}
@@ -537,7 +536,7 @@ public class LintCode {
 		return maxNum;
     }
 	
-	//5.Éú³ÉÀ¨ºÅ
+	//5.ç”Ÿæˆæ‹¬å·
 	public List<String> generateParenthesis(int n) {
 		List<String> ans=new ArrayList<String>();
 		if(n==0){
@@ -551,7 +550,7 @@ public class LintCode {
 
 	private void backtrackSearch(int leftRest,
 			int rightRest, List<String> ans ,String parenthesis) {
-		//²ÉÓÃ»ØËİ·¨£¬Í¨¹ıµİ¹éµÄ·½Ê½²éÕÒ¿ÉÄÜ×éºÏ
+		//é‡‡ç”¨å›æº¯æ³•ï¼Œé€šè¿‡é€’å½’çš„æ–¹å¼æŸ¥æ‰¾å¯èƒ½ç»„åˆ
 		if(leftRest>rightRest)
 			return;
 		if(leftRest==0 && rightRest==0){
@@ -577,13 +576,13 @@ public class LintCode {
     }
     */
 
-	//6.xµÄn´ÎÃİ
+	//6.xçš„næ¬¡å¹‚
 	 public double myPow(double x, int n) {
 		 Math.pow(x, n);
 		 int powNum=Math.abs(n);
 		 if(n==0)
 			 return 1;
-		 //nÎª¸ºÖµÇÒ¾ø¶ÔÖµÈ¡Öµ³¬¹ı2147483647£¨¼´int·¶Î§Ê±£©£¬µİ¹éÉî¶È½«³¬³ö·¶Î§£¬°´Çé¿ö¸ø³ö´ğ°¸
+		 //nä¸ºè´Ÿå€¼ä¸”ç»å¯¹å€¼å–å€¼è¶…è¿‡2147483647ï¼ˆå³intèŒƒå›´æ—¶ï¼‰ï¼Œé€’å½’æ·±åº¦å°†è¶…å‡ºèŒƒå›´ï¼ŒæŒ‰æƒ…å†µç»™å‡ºç­”æ¡ˆ
 		 if(n<=-2147483648){
 			 if(Math.abs(x)==1)
 				 return 1.0;
@@ -596,7 +595,7 @@ public class LintCode {
 		 else
 			 return 1.0/ans;
 	    }
-	//²ÉÓÃ·ÖÖÎ·¨£¬Ê¹Ê±¼ä¸´ÔÓ¶È½µÖÁO(logn)
+	//é‡‡ç”¨åˆ†æ²»æ³•ï¼Œä½¿æ—¶é—´å¤æ‚åº¦é™è‡³O(logn)
 	private double calcuPow(double x, int powNum) {
 		if(powNum==1)
 			return x;
@@ -604,14 +603,14 @@ public class LintCode {
 			double temp=calcuPow(x,powNum/2);
 			return temp*temp;
 		}
-		//powNumÎªÆæÊıÊ±£¬Çó(powNum-1)/2µÄÆ½·½Öµ£¨powNum/2³ı²»¾¡Ê±¼´ÎªÏòÏÂÈ¡Õû£©
+		//powNumä¸ºå¥‡æ•°æ—¶ï¼Œæ±‚(powNum-1)/2çš„å¹³æ–¹å€¼ï¼ˆpowNum/2é™¤ä¸å°½æ—¶å³ä¸ºå‘ä¸‹å–æ•´ï¼‰
 		else{
 			double temp=calcuPow(x,powNum/2);
 			return temp*temp*x;
 		}
 	}
 
-	//¶ş²æÊ÷µÄĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯
+	//äºŒå‰æ ‘çš„åºåˆ—åŒ–å’Œååºåˆ—åŒ–
 	/**
 	 * Definition of TreeNode:
 	 * public class TreeNode {
@@ -623,7 +622,7 @@ public class LintCode {
 	 *     }
 	 * }
 	 */
-	//ĞòÁĞ»¯
+	//åºåˆ—åŒ–
 	public String serialize(TreeNode root) {
 		String data=new String();
 		if(root!=null){
@@ -632,7 +631,7 @@ public class LintCode {
 		return data;
     }
 	private String addNode(TreeNode node, String data) {
-		//Ê¹ÓÃ,·Ö¸ô¸÷¸ö½Úµã£¬¿Õ½Úµã#±íÊ¾
+		//ä½¿ç”¨,åˆ†éš”å„ä¸ªèŠ‚ç‚¹ï¼Œç©ºèŠ‚ç‚¹#è¡¨ç¤º
 		data=data+node.val+",";
 		if(node.left!=null)
 			data=addNode(node.left,data);
@@ -645,7 +644,7 @@ public class LintCode {
 		return data;
 	}
 
-	//·´ĞòÁĞ»¯
+	//ååºåˆ—åŒ–
 	private int index;
 	public TreeNode deserialize(String data) {
 		if(data!=null && data.length()>0){
