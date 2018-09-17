@@ -4,7 +4,7 @@ LintCode中已刷题目的代码总结
 ## 1、阶梯训练（Google）
 ### 描述<br>
 LintCode阶梯训练Google篇，包含Easy及Medium难度所有必做高频题。<br>
-各题详细描述请参见https://www.lintcode.com/ladder/18/
+各题详细描述请参见[https://www.lintcode.com/ladder/18/](https://www.lintcode.com/ladder/18/?_blank)
 
 ### 代码<br>
 见LintCode.java
