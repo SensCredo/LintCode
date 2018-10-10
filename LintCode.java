@@ -674,7 +674,113 @@ public class LintCode {
 		else
 			index++;
 	}
+	//3-困难
+	//1.岛屿的个数II
+	/**
+	 * Definition for a point.
+	 */
+	class Point {
+		int x;
+		int y;
 
+		Point() {
+			x = 0;
+			y = 0;
+		}
+
+		Point(int a, int b) {
+			x = a;
+			y = b;
+		}
+	}
+	
+	public List<Integer> numIslands2(int n, int m, Point[] operators) {
+		//建立并查表，存储root节点
+		int[] unionFind=new int[n*m];
+		Arrays.fill(unionFind, -1);
+		//存储岛屿区域信息
+		Map<Integer,List<Point>> areas=new HashMap<Integer,List<Point>>();
+		List<Integer> isNum=new ArrayList<Integer>();
+		if(operators==null || operators.length==0)
+			return isNum;
+		for (Point island : operators) {
+			//位置信息（按行从左向右依次为0，1，2，...）
+			int location=island.x*m+island.y;
+			if(unionFind[location]==-1){
+				//查找四周临近节点的root
+				List<Integer> adjUnion=searchAround(m,unionFind,location);
+				//若附近无岛屿，则建立新区域
+				if(adjUnion.size()==0){
+					List<Point> islands = new ArrayList<Point>();
+					islands.add(island);
+					areas.put(location, islands);
+					unionFind[location]=location;
+				}
+				//若附近仅有一岛屿区域，则加入该区域
+				else if(adjUnion.size()==1){
+					int root= adjUnion.get(0);
+					unionFind[location]=root;
+					List<Point> islands = areas.get(root);
+					islands.add(island);
+					unionFind[location]=root;
+				}
+				//若附近有多个岛屿区域，合并所有区域后加入其中
+				else{
+					int root=unionCombine(adjUnion,areas,unionFind,m);
+					unionFind[location]=root;
+					List<Point> islands = areas.get(root);
+					islands.add(island);
+					unionFind[location]=root;
+				}
+			}
+			isNum.add(areas.size());
+		}
+		return isNum;
+	}
+
+	private List<Integer> searchAround(int m, int[] unionFind, int location) {
+		//使用set防止写入重复元素
+		Set<Integer> adjUnion=new TreeSet<Integer>();
+		int temp;
+		//按上下左右顺序检索,若不为-1则存入adjUnion
+		if(location-m>=0 && (temp=unionFind[location-m])!=-1)
+			adjUnion.add(temp);		
+		if(location+m<unionFind.length && (temp=unionFind[location+m])!=-1)
+			adjUnion.add(temp);
+		if(location%m!=0 && (temp=unionFind[location-1])!=-1)
+			adjUnion.add(temp);
+		if((location+1)%m!=0 && (temp=unionFind[location+1])!=-1)
+			adjUnion.add(temp);
+		return new ArrayList<Integer>(adjUnion);
+	}
+	private int unionCombine(List<Integer> adjUnion,
+			Map<Integer, List<Point>> areas, int[] unionFind, int m) {
+		int maxArea=-1;
+		int size=0;
+		//寻找最大的岛屿区域
+		for (int i = 0; i < adjUnion.size(); i++) {
+			int area=adjUnion.get(i);
+			List<Point> islands = areas.get(area);
+			if(islands.size()>size){
+				maxArea=area;
+				size=islands.size();
+			}
+		}
+		//合并集合（合并areas并更新并查表）
+		List<Point> MaxIslands = areas.get(maxArea);
+		for (int i = 0; i < adjUnion.size(); i++) {
+			int area=adjUnion.get(i);
+			if(area!=maxArea){
+				List<Point> islands = areas.get(area);
+				MaxIslands.addAll(islands);
+				areas.remove(area);
+				for (Point point : islands) {
+					unionFind[point.x*m+point.y]=maxArea;
+				}
+			}
+		}
+		return maxArea;
+	}
 	@Test
 	public void myTest(){
 		
