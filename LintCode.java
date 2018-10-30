@@ -578,7 +578,6 @@ public class LintCode {
 
 	//6.x的n次幂
 	 public double myPow(double x, int n) {
-		 Math.pow(x, n);
 		 int powNum=Math.abs(n);
 		 if(n==0)
 			 return 1;
